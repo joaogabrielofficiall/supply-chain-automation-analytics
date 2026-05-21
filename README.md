@@ -73,9 +73,9 @@ A unificação das bases ocorre na aba "Suprimentos", através de Mesclagem de C
 *Abaixo, demonstrando o pipeline de limpeza e processamento dos dados:*
 
 <p align="center">
-  <img src="assets/03. Preparacao/image_e0791f.png" width="30%">
-  <img src="assets/03. Preparacao/image_e079b4.png" width="30%">
-  <img src="assets/03. Preparacao/image_dfb20e.png" width="30%">
+  <img src="assets/03. Preparacao/pq_consumo.png" width="30%">
+  <img src="assets/03. Preparacao/pq_estoque.png" width="30%">
+  <img src="assets/03. Preparacao/pq_suprimentos.png" width="30%">
 </p>
 
 ---
