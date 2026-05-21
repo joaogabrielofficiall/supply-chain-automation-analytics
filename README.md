@@ -73,11 +73,9 @@ A unificação das bases ocorre na aba "Suprimentos", através de Mesclagem de C
 *Abaixo, demonstrando o pipeline de limpeza e processamento dos dados:*
 
 <p align="center">
-  <img src="assets/03. Preparacao/image_e008e1.png" width="45%">
-  <img src="assets/03. Preparacao/image_e0091d.png" width="45%">
-  <br>
-  <img src="assets/03. Preparacao/image_e00be4.png" width="45%">
-  <img src="assets/03. Preparacao/image_e00c20.png" width="45%">
+  <img src="assets/03. Preparacao/image_e0791f.png" width="30%">
+  <img src="assets/03. Preparacao/image_e079b4.png" width="30%">
+  <img src="assets/03. Preparacao/image_dfb20e.png" width="30%">
 </p>
 
 ---
@@ -128,8 +126,8 @@ DIVIDE(
 **Confira o desenvolvimento lógico da etapa de modelagem:**
 
 <p align="center">
-  <img src="assets/04.Modelagem/image_dfb20e.png" width="80%">
-  <br><i>Estrutura de modelagem e medidas DAX</i>
+  <img src="assets/04.Modelagem/diagrama_de_exibição.png" width="80%">
+  <br><i>Diagrama de modelagem e medidas DAX</i>
 </p>
 
 ---
