@@ -6,10 +6,6 @@
 
 > **Visão Geral:** Pipeline analítica ponta a ponta desenvolvida para automação de requisições, mitigação de rupturas operacionais e governança de capital imobilizado, transformando o estoque de um centro de custo passivo em um ativo logístico estratégico (S&OP).
 
-Abaixo, apresento a estrutura de diretórios do projeto no VS Code, demonstrando a organização lógica das análises, pastas de dados, dashboards e mídias organizadas pelas etapas da metodologia CRISP-DM:
-
-![Estrutura do Projeto](assets/00.png)
-
 ---
 
 ## 🧭 Metodologia CRISP-DM
@@ -77,12 +73,12 @@ A unificação das bases ocorre na aba "Suprimentos", através de Mesclagem de C
 *Abaixo, vídeos demonstrando o pipeline de limpeza e processamento dos dados:*
 
 <p align="center">
-  <video src="assets/03. Preparacao/video1.mp4" width="80%" controls="controls"></video>
+  <video src="assets/03. Preparacao/Gravando 2026-04-18 231119.mp4" width="80%" controls="controls"></video>
   <br><i>Processo de Tratamento de Dados - Parte 1</i>
 </p>
 
 <p align="center">
-  <video src="assets/03. Preparacao/video2.mp4" width="80%" controls="controls"></video>
+  <video src="assets/03. Preparacao/Gravando 2026-04-18 231208.mp4" width="80%" controls="controls"></video>
   <br><i>Processo de Tratamento de Dados - Parte 2</i>
 </p>
 
@@ -95,17 +91,17 @@ Nesta etapa, o foco é a construção da inteligência estatística e lógica do
 #### 🧮 Lógicas Matemáticas Implementadas (Aba Suprimentos)
 
 **Algoritmo de Status de Compra:**
-```excel
+
 =SE(F5 <= (G5/30)*20; "RUPTURA"; SE(F5 < G5; "COMPRA IMEDIATA"; SE(F5 > G5*2; "EXCESSO"; "SAUDÁVEL")))
 
-# Mecanismo de Sugestão de Quantidade Otimizada (Com fator embalagem):
+#### Mecanismo de Sugestão de Quantidade Otimizada (Com fator embalagem):
 
 =SE(OU(H5="COMPRA IMEDIATA"; H5="RUPTURA"); SE(ARREDONDAR.PARA.CIMA((MÁXIMO(SE(OU(C5="Copa";C5="Limpeza"); F5*2; F5*4); G5+F5) - F5) / I5; 0)<=0; "---"; ARREDONDAR.PARA.CIMA((MÁXIMO(SE(OU(C5="Copa";C5="Limpeza"); F5*2; F5*4); G5+F5) - F5) / I5; 0)); "---")
 
-# 📊 Modelagem de Medidas Analíticas (DAX)
-Métricas agregadas desenvolvidas no Power Pivot / Power BI:
+#### 📊 Modelagem de Medidas Analíticas (DAX)
+**Métricas agregadas desenvolvidas no Power Pivot / Power BI:**
 
-1. Nível de Serviço de Itens Essenciais (OTIF de Disponibilidade)
+**1. Nível de Serviço de Itens Essenciais (OTIF de Disponibilidade)**
 
 Nivel_Servico_Essenciais := 
 DIVIDE(
@@ -113,7 +109,7 @@ DIVIDE(
     CALCULATE( DISTINCTCOUNT(TBEstoque[SKU]); TBEstoque[ITEM ESSENCIAL] = "SIM" )
 )
 
-2. Capital Imobilizado Crítico (Classe C em Excesso)
+**2. Capital Imobilizado Crítico (Classe C em Excesso)**
 
 Capital_Imobilizado_Critico := 
 CALCULATE (
@@ -122,7 +118,7 @@ CALCULATE (
     FILTER ( TBEstoque; CALCULATE ( COUNTROWS ( TBSuprimentos ); TBSuprimentos[STATUS COMPRA] = "EXCESSO" ) > 0 )
 )
 
-3. Cobertura de Estoque Geral (Dias)
+**3. Cobertura de Estoque Geral (Dias)**
 
 Cobertura_Estoque_Dias := 
 DIVIDE(
@@ -130,32 +126,30 @@ DIVIDE(
     DIVIDE(SUM(TBEstoque[CONSUMO MÉDIO MENSAL]); 30)
 )
 
-# 🖼️ Galeria de Modelagem e Inteligência Analítica
-Confira o desenvolvimento lógico da etapa de modelagem:
+#### 🖼️ Galeria de Modelagem e Inteligência Analítica
+**Confira o desenvolvimento lógico da etapa de modelagem:**
 
-# 5️⃣ Etapa 5: Avaliação dos Resultados
-O modelo dita agora as diretrizes de ressuprimento do ERP, impactando diretamente os R$ 22 milhões anuais da operação.
+### 5️⃣ Etapa 5: Avaliação dos Resultados
+**O modelo dita agora as diretrizes de ressuprimento do ERP, impactando diretamente os R$ 22 milhões anuais da operação.**
 
-# A. Otimização do Capital de Giro vs. Nível de Serviço
+**A. Otimização do Capital de Giro vs. Nível de Serviço**
 
-Fato: 100% de Nível de Serviço nos itens essenciais; Cobertura Global de Estoque em 91 dias.
+* **Fato:**100% de Nível de Serviço nos itens essenciais; Cobertura Global de Estoque em 91 dias.
+* **Ação de S&OP:**Parametrização diferenciada baseada no giro. Copa e Limpeza passaram a operar com 30 dias de cobertura; itens críticos de Expedição com 90 dias. Caixa destravado sem risco fabril.
 
-Ação de S&OP: Parametrização diferenciada baseada no giro. Copa e Limpeza passaram a operar com 30 dias de cobertura; itens críticos de Expedição com 90 dias. Caixa destravado sem risco fabril.
+**B. Auditoria de Requisições e Aderência ao Consumo**
 
-# B. Auditoria de Requisições e Aderência ao Consumo
+* **Fato:**Aderência ao Consumo Planejado registrou apenas 41,6%.
+* **Ação de S&OP:**Criação de trava sistêmica no ERP. Requisições que ultrapassarem a média histórica do setor são bloqueadas automaticamente, estancando compras emergenciais por "desespero operacional".
 
-Fato: Aderência ao Consumo Planejado registrou apenas 41,6%.
+**C. Automação de Gatilhos contra Desabastecimento**
 
-Ação de S&OP: Criação de trava sistêmica no ERP. Requisições que ultrapassarem a média histórica do setor são bloqueadas automaticamente, estancando compras emergenciais por "desespero operacional".
+* **Ação de S&OP:** O gatilho de "Compra Imediata" agora é um indicador dinâmico. Ele cruza o saldo real disponível com o lead time exato do fornecedor (15 ou 30 dias).
 
-# C. Automação de Gatilhos contra Desabastecimento
+#### 🖼️ Evidências de Validação (Testes e Negócio)
 
-Ação de S&OP: O gatilho de "Compra Imediata" agora é um indicador dinâmico. Ele cruza o saldo real disponível com o lead time exato do fornecedor (15 ou 30 dias).
-
-# 🖼️ Evidências de Validação (Testes e Negócio)
-
-# 6️⃣ Etapa 6: Implantação (Deployment)
-⚙️ Arquitetura de Execução e Macro Fluxo
+### 6️⃣ Etapa 6: Implantação (Deployment)
+#### ⚙️ Arquitetura de Execução e Macro Fluxo
 O pipeline de dados opera de forma semi-automatizada:
 
 1. O analista exporta o dump do WMS e salva no diretório de rede.
@@ -166,12 +160,14 @@ O pipeline de dados opera de forma semi-automatizada:
 
 4. Governança: Compradores são obrigatoriamente bloqueados de emitir ordens de compra caso o item conste com Status: Excesso no dashboard, exigindo assinatura da Diretoria.
 
-# 📈 Demonstração de ROI (Retorno sobre o Investimento)
-💰 Destravamento de Capital: Recuperação imediata de R$ 17.583,65 imobilizados em estoque morto de Classe C.
+#### 📈 Demonstração de ROI (Retorno sobre o Investimento)
+**💰 Destravamento de Capital:** Recuperação imediata de **R$ 17.583,65** imobilizados em estoque morto de Classe C.
+**⏱️ Eficiência Operacional (FTE):** Processo manual de consolidação reduzido de 6 horas semanais para 2 minutos. Aumento de 24h úteis mensais para o time focar em negociações estratégicas.
+**🛡️ Mitigação de Custos Ocultos:** Bloqueio de 58,4% das requisições fora do padrão, extinguindo fretes rodoviários emergenciais (majorados).
 
-⏱️ Eficiência Operacional (FTE): Processo manual de consolidação reduzido de 6 horas semanais para 2 minutos. Aumento de 24h úteis mensais para o time focar em negociações estratégicas.
+#### 📊 Visualização do Dashboard Executivo (Entrega Final)
+Documentação desenvolvida com foco em governança corporativa, aplicando inteligência e métricas avançadas na estrutura de suprimentos.
 
-🛡️ Mitigação de Custos Ocultos: Bloqueio de 58,4% das requisições fora do padrão, extinguindo fretes rodoviários emergenciais (majorados).
-
-🖼️ Painel Final e Ambiente Implantado
-Documentação desenvolvida focada em governança corporativa, aplicando inteligência e métricas avançadas na estrutura de suprimentos da organização.
+<p align="center">
+  <img src="assets/06.Implementacao/dashboard.png" width="100%">
+</p>
