@@ -73,13 +73,8 @@ A unificação das bases ocorre na aba "Suprimentos", através de Mesclagem de C
 *Abaixo, vídeos demonstrando o pipeline de limpeza e processamento dos dados:*
 
 <p align="center">
-  <video src="assets/03. Preparacao/Gravando 2026-04-18 231119.mp4" width="80%" controls="controls"></video>
-  <br><i>Processo de Tratamento de Dados - Parte 1</i>
-</p>
-
-<p align="center">
-  <video src="assets/03. Preparacao/Gravando 2026-04-18 231208.mp4" width="80%" controls="controls"></video>
-  <br><i>Processo de Tratamento de Dados - Parte 2</i>
+  <img src="assets/03. Preparacao/image_dfb20e.png" width="80%">
+  <br><i>Estrutura do fluxo de tratamento de dados</i>
 </p>
 
 ---
@@ -129,41 +124,40 @@ DIVIDE(
 #### 🖼️ Galeria de Modelagem e Inteligência Analítica
 **Confira o desenvolvimento lógico da etapa de modelagem:**
 
+---
+
 ### 5️⃣ Etapa 5: Avaliação dos Resultados
-**O modelo dita agora as diretrizes de ressuprimento do ERP, impactando diretamente os R$ 22 milhões anuais da operação.**
 
-**A. Otimização do Capital de Giro vs. Nível de Serviço**
+O modelo dita agora as diretrizes de ressuprimento do ERP, impactando diretamente os R$ 22 milhões anuais da operação.
 
-* **Fato:**100% de Nível de Serviço nos itens essenciais; Cobertura Global de Estoque em 91 dias.
-* **Ação de S&OP:**Parametrização diferenciada baseada no giro. Copa e Limpeza passaram a operar com 30 dias de cobertura; itens críticos de Expedição com 90 dias. Caixa destravado sem risco fabril.
+#### A. Otimização do Capital de Giro vs. Nível de Serviço
+* **Fato:** 100% de Nível de Serviço nos itens essenciais; Cobertura Global de Estoque em 91 dias.
+* **Ação de S&OP:** Parametrização diferenciada baseada no giro. Copa e Limpeza passaram a operar com 30 dias de cobertura; itens críticos de Expedição com 90 dias.
 
-**B. Auditoria de Requisições e Aderência ao Consumo**
+#### B. Auditoria de Requisições e Aderência ao Consumo
+* **Fato:** Aderência ao Consumo Planejado registrou apenas 41,6%.
+* **Ação de S&OP:** Criação de trava sistêmica no ERP. Requisições que ultrapassarem a média histórica do setor são bloqueadas automaticamente, estancando compras emergenciais.
 
-* **Fato:**Aderência ao Consumo Planejado registrou apenas 41,6%.
-* **Ação de S&OP:**Criação de trava sistêmica no ERP. Requisições que ultrapassarem a média histórica do setor são bloqueadas automaticamente, estancando compras emergenciais por "desespero operacional".
+#### C. Automação de Gatilhos contra Desabastecimento
+* **Ação de S&OP:** O gatilho de "Compra Imediata" agora é um indicador dinâmico que cruza o saldo real disponível com o lead time exato do fornecedor.
 
-**C. Automação de Gatilhos contra Desabastecimento**
-
-* **Ação de S&OP:** O gatilho de "Compra Imediata" agora é um indicador dinâmico. Ele cruza o saldo real disponível com o lead time exato do fornecedor (15 ou 30 dias).
-
-#### 🖼️ Evidências de Validação (Testes e Negócio)
+---
 
 ### 6️⃣ Etapa 6: Implantação (Deployment)
+
 #### ⚙️ Arquitetura de Execução e Macro Fluxo
-O pipeline de dados opera de forma semi-automatizada:
-
-1. O analista exporta o dump do WMS e salva no diretório de rede.
-
-2. O script / Power Query executa o ETL (higienização, joins, cálculos) nativamente.
-
-3. O modelo é atualizado e o painel analítico disponibilizado via SharePoint.
-
-4. Governança: Compradores são obrigatoriamente bloqueados de emitir ordens de compra caso o item conste com Status: Excesso no dashboard, exigindo assinatura da Diretoria.
+O pipeline de dados opera de forma semi-automatizada seguindo estes passos:
+1. **Extração:** O analista exporta o dump do WMS e salva no diretório de rede.
+2. **Transformação:** O Power Query executa o ETL (higienização, joins, cálculos) nativamente.
+3. **Disponibilização:** Painel atualizado via SharePoint.
+4. **Governança:** Bloqueio automático para itens em *Excesso*.
 
 #### 📈 Demonstração de ROI (Retorno sobre o Investimento)
-**💰 Destravamento de Capital:** Recuperação imediata de **R$ 17.583,65** imobilizados em estoque morto de Classe C.
-**⏱️ Eficiência Operacional (FTE):** Processo manual de consolidação reduzido de 6 horas semanais para 2 minutos. Aumento de 24h úteis mensais para o time focar em negociações estratégicas.
-**🛡️ Mitigação de Custos Ocultos:** Bloqueio de 58,4% das requisições fora do padrão, extinguindo fretes rodoviários emergenciais (majorados).
+> 💰 **Destravamento de Capital:** Recuperação imediata de **R$ 17.583,65**.
+> 
+> ⏱️ **Eficiência Operacional:** Processo reduzido de 6 horas para 2 minutos.
+> 
+> 🛡️ **Mitigação de Custos:** Bloqueio de 58,4% das requisições indevidas.
 
 #### 📊 Visualização do Dashboard Executivo (Entrega Final)
 Documentação desenvolvida com foco em governança corporativa, aplicando inteligência e métricas avançadas na estrutura de suprimentos.
