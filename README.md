@@ -70,11 +70,14 @@ As extrações brutas do sistema transacional passaram por um processo rigoroso 
 A unificação das bases ocorre na aba "Suprimentos", através de Mesclagem de Consultas (Joins). Foram desenvolvidas colunas calculadas para classificar dinamicamente o status crítico de cada SKU: **Sugestão de Compra**, **Risco de Ruptura**, **Excesso de Estoque** e **Normalidade**.
 
 #### 🎥 Demonstração Prática (ETL e Limpeza)
-*Abaixo, vídeos demonstrando o pipeline de limpeza e processamento dos dados:*
+*Abaixo, demonstrando o pipeline de limpeza e processamento dos dados:*
 
 <p align="center">
-  <img src="assets/03. Preparacao/image_dfb20e.png" width="80%">
-  <br><i>Estrutura do fluxo de tratamento de dados</i>
+  <img src="assets/03. Preparacao/image_e008e1.png" width="45%">
+  <img src="assets/03. Preparacao/image_e0091d.png" width="45%">
+  <br>
+  <img src="assets/03. Preparacao/image_e00be4.png" width="45%">
+  <img src="assets/03. Preparacao/image_e00c20.png" width="45%">
 </p>
 
 ---
@@ -123,6 +126,11 @@ DIVIDE(
 
 #### 🖼️ Galeria de Modelagem e Inteligência Analítica
 **Confira o desenvolvimento lógico da etapa de modelagem:**
+
+<p align="center">
+  <img src="assets/04.Modelagem/image_dfb20e.png" width="80%">
+  <br><i>Estrutura de modelagem e medidas DAX</i>
+</p>
 
 ---
 
